@@ -2,6 +2,11 @@ import { Schema,Model, model } from "mongoose";
 
 const EventSchema = new Schema({
 
+    name:{
+        type: String,
+        required: true
+     },
+
     metrics: [
         {
 
@@ -24,15 +29,20 @@ const EventSchema = new Schema({
     ]
 },
 {
-round:{
+MaxRound:{
     type: Number,
     required: true
+},
+round:{
+    type: Number,
+    default:0
 },
 
 status:{
     type: String,
     enum: ["pending","active","done"],
-    required: true
+    lowercase: true,
+    default: "pending"
 },
 
 

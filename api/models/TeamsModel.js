@@ -4,36 +4,28 @@ const TeamSchema = new Schema ({
 
 
 
- nombre:{
+ name:{
     type: String,
     required: true
  },
 
- id_participantes:[{
-    type: Number
-   ,
-    required: true
-}],
+ members:[],
 
 
-lider:{
-    type:String
+leader:{
+    type:Schema.Types.ObjectId
     ,
         required: true
 
 },
 
-ronda:{
+round:{
     type: Number
     ,
-        required: true
+    default:0
 },
 
-id_calificacion:{
-     type: Number
-    ,
-        required: true
-}
+grades:[]
 
 
 

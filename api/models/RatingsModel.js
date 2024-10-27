@@ -1,27 +1,35 @@
 import { Schema, model, Model } from "mongoose";
 
-const CalificacionSchema = new Schema({
+const GradesSchema = new Schema({
 
-id_Teams:{
-    id_ronda:{
+id_group:{
+    type:Schema.Types.ObjectId,
+    required: true
+},
+    round:{
         type: Number,
         required: true
-    }
-},
 
-id_Events:{
+
+    },
+id_Event:{
     
-
+    type: Schema.Types.ObjectId,
+    required: true
 },
 
-Calificaciones:[{
+grades:[{
 
-    id_metrica:{
+    id_metric:{
         type: Number, 
         required: true
     },
 
-    Calificacion:{
+    grade:{
+        type: Number,
+        required: true
+    },
+    id_judges:{
         type: Number,
         required: true
     }
@@ -31,3 +39,5 @@ Calificaciones:[{
 }]
 
 })
+
+export const Ratingsmodel = model("grades",GradesSchema)

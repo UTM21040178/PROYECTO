@@ -4,11 +4,15 @@ const UserSchema = new Schema ({
 
    
 
-    nombre:{
+    name:{
         type: String,
         required: true
     },
-    correo:{
+    password:{
+        type: String,
+        required: true
+    },
+    email:{
         type: String
         ,
         required: true
@@ -21,7 +25,9 @@ const UserSchema = new Schema ({
     rol:{
         type: String
         ,
-        required: true
+        required: true,
+        enum: ["administrator", "participant", "judge"],
+        lowerCase: true
     },
 
 
