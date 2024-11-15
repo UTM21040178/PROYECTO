@@ -1,28 +1,28 @@
 import { Schema, model, Model } from "mongoose";
 
-const UserSchema = new Schema ({
+const UserSchema = new Schema({
 
-   
 
-    name:{
+
+    name: {
         type: String,
         required: true
     },
-    password:{
+    password: {
         type: String,
         required: true
     },
-    email:{
+    email: {
         type: String
         ,
         required: true
     },
-    curp:{
+    curp: {
         type: String
         ,
         required: true
     },
-    rol:{
+    rol: {
         type: String
         ,
         required: true,
@@ -35,4 +35,4 @@ const UserSchema = new Schema ({
 
 })
 
-export const UserModel = model("Users",UserSchema)
+export const UserModel = model("Users", UserSchema)
