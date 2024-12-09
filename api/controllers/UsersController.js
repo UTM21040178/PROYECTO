@@ -47,13 +47,13 @@ export default {
             return res.status(400).json({msg: "credenciales invalidas"})
         }
 
-       if (bcrypt.compare(password,user.password)){
+       if (!bcrypt.compare(password,user.password)){
         return res.status(400).json({msg:"credenciales invalidas"})
 
        }
 
 
-       const token = await jwt.sign(user,process.env.PRIVATE_KEY)
+       const token = await jwt.sign(JSON.stringify(user),process.env.PRIVATE_KEY)
 
        return res.status(200).json({token})
     },
@@ -69,7 +69,7 @@ export default {
     
             user.name = req.body.name ? req.body.name : user.name
     
-            user.password = req.body.password ? req.body.password : user.password
+            user.password = req.body.password ? await bcrypt.hash(req.body.password,10): user.password
     
             user.email = req.body.email ? req.body.email : user.email
     
@@ -87,6 +87,15 @@ export default {
 
        
 
+    },
+
+    getUsers:async (req, res) => {
+        try {
+            const users = await UserModel.find()
+            return res.status(200).json(users)
+        } catch (error) {
+                return res.status(500).json({msg:"Ocurrio un error al obterner los usuarios"})
+        }
     }
 
 }

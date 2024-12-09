@@ -13,7 +13,7 @@ const TeamSchema = new Schema ({
 
 
 leader:{
-    type:Schema.Types.ObjectId
+    type: String
     ,
         required: true
 

@@ -52,5 +52,16 @@ export default {
             return res.status(500).json({ msg: "ocurrio un error al crear el equipo" })
         }
 
+    },
+
+
+    getTeams:async (req, res) => {
+        try {
+            const teams = await TeamsModel.find()
+            return res.status(200).json(teams)
+        } catch (error) {
+                return res.status(500).json({msg:"Ocurrio un error al obterner los equipos"})
+        }
     }
+
 }

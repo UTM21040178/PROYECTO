@@ -58,16 +58,16 @@ const validateEvent = (metrics, name, max_round) => {
 export default {
     createEvent: async (req, res) => {
         try {
-            const { metrics, name, max_round } = req.body
-            const { isValid, msg } = validateEvent(req.body.metrics, req.body.name, req.body.max_round)
+            const { metrics, title, max_round } = req.body
+            const { isValid, msg } = validateEvent(metrics, title, max_round)
 
             if (!isValid) {
                 return res.status(400).json({ msg })
             }
             const event = {
-                name: req.body.name,
-                metrics,
-                max_round: req.body.max_round,
+              name: title,
+              metrics: metrics,
+              max_round: max_round
             };
 
             await EventModel.create(event);
@@ -126,12 +126,7 @@ export default {
         } catch (error) {
             return res.status(500).json({ msg: "Error al actualizar el status del evento" })
         }
-    }
-
-
-
-
-}
+    },
 
 changeRound: async (req, res) => {
     try {
@@ -220,11 +215,21 @@ changeRound: async (req, res) => {
 
 
     }
+    
 
 
-
+},
+getEvents:async (req, res) => {
+    try {
+        const events = await EventModel.find()
+        return res.status(200).json(events)
+    } catch (error) {
+            return res.status(500).json({msg:"Ocurrio un error al obterner los eventos"})
+    }
 }
 
 
 
 
+
+}
